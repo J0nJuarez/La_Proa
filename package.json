@@ -1,0 +1,18 @@
+{
+  "name": "laproaaaa",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^7.0.4"
+  },
+  "dependencies": {
+    "seedrandom": "^3.0.5",
+    "three": "^0.178.0"
+  }
+}
