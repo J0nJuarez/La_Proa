@@ -22,7 +22,7 @@ controles.update();
 const luz = new THREE.DirectionalLight(0xffffff, 10);
 luz.position.set(10, 20, 10);
 
-initPersonaje();
+//initPersonaje();
 
 // Prueba personaje
 function initPersonaje() {
@@ -42,14 +42,16 @@ function initPersonaje() {
   animate();
 }
 
-// initMapa(); // Opcional
+ initMapa(); // Opcional
 
 function initMapa() {
   escenaMapa = new THREE.Scene();
-  escenaMapa.background = new THREE.Color(0x49f9f9);
+  escenaMapa.background = new THREE.Color(0x444444);
+  const ambientaLuz = new THREE.AmbientLight(0xffffff, 1);
+  escenaMapa.add(ambientaLuz);
 
-  const semilla = Math.floor(Math.random() * 10000);
-  const grid = generarGrid(semilla, 20, 30);
+  const semilla = Math.floor(Math.random() * 10000); // esto no deberia existri y aqui importa semilla del dia
+  const grid = generarGrid(semilla, 20, 20);
   renderizarGrid(grid, escenaMapa);
 
   animate();
@@ -58,11 +60,11 @@ function initMapa() {
 function animate(time) {
   requestAnimationFrame(animate);
 
-  if (personaje?.userData?.actualizar) {
-    personaje.userData.actualizar(time * 0.001); // ← ¡esto ya animará!
-  }
+ // if (personaje?.userData?.actualizar) {
+ //   personaje.userData.actualizar(time * 0.001); // descomentar si se usa personaje
+ // }
 
-  renderer.render(escenaPersonaje, camara);
+  renderer.render(escenaMapa, camara);
 }
 
 // ajustar para siempre el tamaño de la pantalla

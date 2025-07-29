@@ -2,6 +2,7 @@ import * as THREE from 'three';
 
 export function renderizarGrid(grid, escena) {
   const materiales = {
+    0: new THREE.MeshStandardMaterial({ color: 0xfff}), // espacio vacío
     1: new THREE.MeshStandardMaterial({ color: 0x444444 }), // muro
     3: new THREE.MeshStandardMaterial({ color: 0x00ff00 }), // mesa de trabajo
     4: new THREE.MeshStandardMaterial({ color: 0x3399ff }), // fregadero
@@ -19,11 +20,11 @@ export function renderizarGrid(grid, escena) {
       if (tipo === 0) continue; // espacio vacío
 
       let altura = 1; // altura por defecto
-      if (tipo === 1) altura = 3;       // muro
-      else if (tipo === 3) altura = 0.5; // mesa
-      else if (tipo === 4) altura = 1.2; // fregadero
-      else if (tipo === 5) altura = 1.2; // fuego
-      else if (tipo >= 6 && tipo <= 10) altura = 0.4; // objetos de comida
+      if (tipo === 1) altura = 1;       // muro
+      else if (tipo === 3) altura = 0.7; // mesa
+      else if (tipo === 4) altura = 1; // fregadero
+      else if (tipo === 5) altura = 1; // fuego
+      else if (tipo >= 6 && tipo <= 10) altura = 0.9; // objetos de comida
 
       const geometria = new THREE.BoxGeometry(1, altura, 1);
       const cubo = new THREE.Mesh(geometria, materiales[tipo]);

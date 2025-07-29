@@ -12,7 +12,7 @@ export function generarGrid(semilla, alto, ancho) {
   const key = (z, x) => `${z},${x}`;
 
   let pasos = 0;
-  const maxPasos = Math.floor(ancho * alto * 0.75);
+  const maxPasos = Math.floor(ancho * alto * 0.7);
 
   while (abiertos.length > 0 && pasos < maxPasos) {
     const [z, x] = abiertos.pop();
@@ -35,19 +35,30 @@ export function generarGrid(semilla, alto, ancho) {
     pasos++;
   }
 
+  // Crear segunda sala en la esquina inferior derecha (ajustable)
+  const sala2 = {
+    x0: ancho - 10,
+    z0: alto - 10,
+    w: 8,
+    h: 8
+  };
+
+  for (let z = sala2.z0; z < sala2.z0 + sala2.h; z++) {
+    for (let x = sala2.x0; x < sala2.x0 + sala2.w; x++) {
+      grid[z][x] = 0;
+    }
+  }
+
+
   const maxIntentos = 1000;
-  let intentos = 0;
 
-  // 5 mesas
-  colocarExactamente(grid, rng, 3, 5, ancho, alto, maxIntentos);
+  // SOLO colocar las 5 mesas en la segunda sala
+  colocarExactamenteEnZona(grid, rng, 3, 5, sala2.x0, sala2.z0, sala2.w, sala2.h, maxIntentos);
 
-  // 1 fregadero 
-  colocarExactamente(grid, rng, 4, 1, ancho, alto, maxIntentos);
+  // otros objetos en cualquier parte del mapa abierta (valor 0)
+  colocarExactamente(grid, rng, 4, 1, ancho, alto, maxIntentos); // fregadero
+  colocarExactamente(grid, rng, 5, 2, ancho, alto, maxIntentos); // fuegos
 
-  // 2 fuegos 
-  colocarExactamente(grid, rng, 5, 2, ancho, alto, maxIntentos);
-
-  // 1 comida
   for (let tipo = 6; tipo <= 10; tipo++) {
     colocarExactamente(grid, rng, tipo, 1, ancho, alto, maxIntentos);
   }
@@ -70,6 +81,20 @@ function colocarExactamente(grid, rng, tipo, cantidad, ancho, alto, maxIntentos)
   let intentos = 0;
   while (colocados < cantidad && intentos < maxIntentos) {
     const [x, z] = coordsAleatorias(rng, ancho, alto);
+    if (grid[z][x] === 0) {
+      grid[z][x] = tipo;
+      colocados++;
+    }
+    intentos++;
+  }
+}
+
+function colocarExactamenteEnZona(grid, rng, tipo, cantidad, x0, z0, w, h, maxIntentos) {
+  let colocados = 0;
+  let intentos = 0;
+  while (colocados < cantidad && intentos < maxIntentos) {
+    const x = Math.floor(rng() * w) + x0;
+    const z = Math.floor(rng() * h) + z0;
     if (grid[z][x] === 0) {
       grid[z][x] = tipo;
       colocados++;
