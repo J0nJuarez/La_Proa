@@ -3,6 +3,15 @@ import seedrandom from 'seedrandom';
 export function generarGrid(semilla, alto, ancho) {
   const rng = seedrandom(semilla);
   const grid = Array.from({ length: alto }, () => Array(ancho).fill(1));
+  // Inicializar bordes como muros
+  for (let z = 0; z < alto; z++) {  
+    grid[z][0] = 21; // muro izquierdo
+    grid[z][ancho - 1] = 21; // muro derecho
+  }
+  for (let x = 0; x < ancho; x++) {
+    grid[0][x] = 21; // muro superior
+    grid[alto - 1][x] = 21; // muro inferior
+  } 
 
   const startX = Math.floor(ancho / 2);
   const startZ = Math.floor(alto / 2);

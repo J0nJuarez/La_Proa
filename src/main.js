@@ -20,7 +20,7 @@ controles.target.set(0, 0, 0);
 controles.update();
 
 const luz = new THREE.DirectionalLight(0xffffff, 10);
-luz.position.set(10, 20, 10);
+//luz.position.set(10, 20, 10);
 
 //initPersonaje();
 
@@ -46,7 +46,7 @@ function initPersonaje() {
 
 function initMapa() {
   escenaMapa = new THREE.Scene();
-  escenaMapa.background = new THREE.Color(0x444444);
+  escenaMapa.background = new THREE.Color(0x000);
   const ambientaLuz = new THREE.AmbientLight(0xffffff, 1);
   escenaMapa.add(ambientaLuz);
 
