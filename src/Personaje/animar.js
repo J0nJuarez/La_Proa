@@ -7,18 +7,18 @@ export function animarPersonaje(personaje, tiempo) {
         personaje.userData.lastPosition = new THREE.Vector3().copy(personaje.position);
     }
 
-    const humo = personaje.userData.humo;
+   const humo = personaje.userData.humo;
 
-    if (humo) {
+    if (humo && cabeza) {
         if (personaje.userData.isSprinting) {
             humo.children.forEach((p, i) => {
                 p.visible = true;
                 const offset = (i - 5) * 0.2;
-                const dist = 5; 
+                const dist = 5 + Math.random() * 2.5; 
                 p.position.set(
-                    Math.sin(personaje.rotation.y) * dist + offset,
-                    0.5 + Math.random() * 0.2,
-                    Math.cos(personaje.rotation.y) * dist + offset
+                    cabeza.position.z * dist + offset,
+                    personaje.position.y -1,
+                    cabeza.position.z * dist + offset
                 );
                 p.material.opacity = 0.3 + Math.random() * 0.2;
             });

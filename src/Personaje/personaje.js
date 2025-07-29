@@ -53,7 +53,7 @@ export function crearPersonaje() {
 
     // humo de correr
 
-    const geometriaHumo = new THREE.SphereGeometry(4, 4, 4);
+    const geometriaHumo = new THREE.SphereGeometry(6, 4, 6);
     const materialHumo = new THREE.MeshBasicMaterial({ color: 0xf8f8f8, transparent: true, opacity: 0.2 });
 
     const humo = new THREE.Group();

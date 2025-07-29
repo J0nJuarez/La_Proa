@@ -27,7 +27,7 @@ initPersonaje();
 // Prueba personaje
 function initPersonaje() {
   escenaPersonaje = new THREE.Scene();
-  escenaPersonaje.background = new THREE.Color(0xf5f5f5);
+  escenaPersonaje.background = new THREE.Color(0x49f9f9);
 
   const ambientaLuz = new THREE.AmbientLight(0xffffff, 1);
   escenaPersonaje.add(ambientaLuz);
@@ -46,7 +46,7 @@ function initPersonaje() {
 
 function initMapa() {
   escenaMapa = new THREE.Scene();
-  escenaMapa.background = new THREE.Color(0xf0f0f0);
+  escenaMapa.background = new THREE.Color(0x49f9f9);
 
   const semilla = Math.floor(Math.random() * 10000);
   const grid = generarGrid(semilla, 20, 30);

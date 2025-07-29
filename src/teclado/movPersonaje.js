@@ -24,11 +24,11 @@ export function configurarControles(personaje) {
         personaje.userData.isSprinting = teclas.o;
 
 
-    if (teclas.d && teclas.s) {
+    if (teclas.s && teclas.a) {
         orientacion = 135;
-    } else if (teclas.w && teclas.d) {
+    } else if (teclas.w && teclas.a) {
         orientacion = 45;
-    } else if (teclas.a && teclas.s) {
+    } else if (teclas.s && teclas.d) {
         orientacion = 225;
     } else if (teclas.w && teclas.d) {
         orientacion = 315;
