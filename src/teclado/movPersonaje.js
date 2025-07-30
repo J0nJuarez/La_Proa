@@ -8,7 +8,8 @@ export function configurarControles(personaje) {
         a: false,
         s: false,
         d: false,
-        o: false
+        o: false,
+        p: false
     };
 
     function actualizarMovimiento() {
@@ -51,6 +52,9 @@ export function configurarControles(personaje) {
 
     window.addEventListener('keydown', (e) => {
         if (e.key in teclas) {
+            if (e.key === 'p') {
+                personaje.userData.aguantaObjeto = true;
+            }
             teclas[e.key] = true;
             actualizarMovimiento();
         }
@@ -62,4 +66,6 @@ export function configurarControles(personaje) {
             actualizarMovimiento();
         }
     });
+
+    return actualizarMovimiento;
 }

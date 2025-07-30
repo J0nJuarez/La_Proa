@@ -71,6 +71,7 @@ export function generarGrid(semilla, alto, ancho) {
   for (let tipo = 6; tipo <= 10; tipo++) {
     colocarExactamente(grid, rng, tipo, 1, ancho, alto, maxIntentos);
   }
+  colocarExactamente(grid, rng, 69, 1, ancho, alto, maxIntentos); // personaje
 
   return grid;
 }
